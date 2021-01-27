@@ -35,11 +35,14 @@ Now, run:
 ```
 sudo bless --folder MOUNT_PATH/System/Library/CoreServices --bootefi --create-snapshot
 ```
+### Restart the Mac in Recovery Mode by holding `Command-R` during restart
 
 ### Enable SIP again
 ```
-csrutil enable
+csrutil emable
+csrutil authenticated-root emable
+reboot
 ```
 
-Reboot your system, and the changes will take place
+the changes will take place
 
