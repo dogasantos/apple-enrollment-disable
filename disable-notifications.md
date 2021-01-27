@@ -19,15 +19,16 @@ sudo mount -o nobrowse -t apfs DISK_PATH MOUNT_PATH
 ```
 Now you can modify the files under the mounted directory, which are the ROOT FILES. Don't mess with them if you're not sure what you're doing. Otherwise, you will break your macos.
 
-In order to disable the ManagedClient daemon:
+In order to disable the ManagedClient daemon, enter the new MOUNT_PATH directory (~/mountRun in the example):
 ```
-sudo bash 
- mv /System/Library/LaunchAgents/com.apple.ManagedClientAgent.agent.plist /System/Library/LaunchAgents/com.apple.ManagedClientAgent.agent-disabled 
- mv /System/Library/LaunchAgents/com.apple.ManagedClientAgent.enrollagent.plist /System/Library/LaunchAgents/com.apple.ManagedClientAgent.enrollagent-disabled 
- mv /System/Library/LaunchDaemons/com.apple.ManagedClient.cloudconfigurationd.plist /System/Library/LaunchDaemons/com.apple.ManagedClient.cloudconfigurationd-disabled 
- mv /System/Library/LaunchDaemons/com.apple.ManagedClient.enroll.plist /System/Library/LaunchDaemons/com.apple.ManagedClient.enroll-disabled 
- mv /System/Library/LaunchDaemons/com.apple.ManagedClient.plist /System/Library/LaunchDaemons/com.apple.ManagedClient-disabled 
- mv /System/Library/LaunchDaemons/com.apple.ManagedClient.startup.plist System/Library/LaunchDaemons/com.apple.ManagedClient.startup-disabled  
+ sudo bash
+ cd ~/mountRun
+ mv System/Library/LaunchAgents/com.apple.ManagedClientAgent.agent.plist System/Library/LaunchAgents/com.apple.ManagedClientAgent.agent-disabled 
+ mv System/Library/LaunchAgents/com.apple.ManagedClientAgent.enrollagent.plist System/Library/LaunchAgents/com.apple.ManagedClientAgent.enrollagent-disabled 
+ mv System/Library/LaunchDaemons/com.apple.ManagedClient.cloudconfigurationd.plist System/Library/LaunchDaemons/com.apple.ManagedClient.cloudconfigurationd-disabled 
+ mv System/Library/LaunchDaemons/com.apple.ManagedClient.enroll.plist System/Library/LaunchDaemons/com.apple.ManagedClient.enroll-disabled 
+ mv System/Library/LaunchDaemons/com.apple.ManagedClient.plist System/Library/LaunchDaemons/com.apple.ManagedClient-disabled 
+ mv System/Library/LaunchDaemons/com.apple.ManagedClient.startup.plist System/Library/LaunchDaemons/com.apple.ManagedClient.startup-disabled  
 ```
 
 Now, run:
