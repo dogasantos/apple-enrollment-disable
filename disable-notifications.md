@@ -39,8 +39,8 @@ sudo bless --folder MOUNT_PATH/System/Library/CoreServices --bootefi --create-sn
 
 ### Enable SIP again
 ```
-csrutil emable
-csrutil authenticated-root emable
+csrutil enable
+csrutil authenticated-root enable
 reboot
 ```
 
