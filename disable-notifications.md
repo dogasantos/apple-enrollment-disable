@@ -5,13 +5,21 @@
 ### Open Terminal in the recovery screen and type:
 ```
 csrutil disable
+csrutil authenticated-root disable
+reboot
 ```
 
-### Restart Computer INTO THE RECOVERY MODE AGAIN
-In the terminal, and run the following two commands:
+### Restart Computer and get into normal boot mode
+
+Find your root mount's device - run mount and chop off the last s, e.g. if your root is /dev/disk1s2s3, you'll need the "/dev/disk1s2" part
+
+Using the values from above create a new directory, for example ~/mountRun then:
 ```
-sudo mount -uw /Volumes/Macintosh\ HD
+sudo mount -o nobrowse -t apfs DISK_PATH MOUNT_PATH
 ```
+Now you can modify the files under the mounted directory, which are the ROOT FILES. Don't mess with them if you're not sure what you're doing. Otherwise, you will break your macos.
+
+In order to disable the ManagedClient daemon:
 ```
 sudo bash 
  mv /System/Library/LaunchAgents/com.apple.ManagedClientAgent.agent.plist /System/Library/LaunchAgents/com.apple.ManagedClientAgent.agent-disabled 
@@ -22,9 +30,15 @@ sudo bash
  mv /System/Library/LaunchDaemons/com.apple.ManagedClient.startup.plist System/Library/LaunchDaemons/com.apple.ManagedClient.startup-disabled  
 ```
 
+Now, run:
+```
+sudo bless --folder MOUNT_PATH/System/Library/CoreServices --bootefi --create-snapshot
+```
+
 ### Enable SIP again
 ```
 csrutil enable
 ```
 
-### Restart Normally and Enjoy
+Reboot your system, and the changes will take place
+
