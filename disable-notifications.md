@@ -1,39 +1,30 @@
-Original: https://gist.github.com/sghiassy/a3927405cf4ffe81242f4ecb01c382ac
+# Disable Device Enrollment Notification on MacOS BIGSUR
 
-# Disable Device Enrollment Notification on Mac.md
+### Restart the Mac in Recovery Mode by holding `Command-R` during restart
 
-## Restart the Mac in Recovery Mode by holding `Comment-R` during restart
-
-#### Open Terminal in the recovery screen and type
-
+### Open Terminal in the recovery screen and type:
 ```
 csrutil disable
 ```
 
-Restart computer
-
-## Edit `com.apple.ManagedClient.enroll.plist`
-
-In the terminal, type
-
+### Restart Computer INTO THE RECOVERY MODE AGAIN
+In the terminal, and run the following two commands:
 ```
-sudo open /Applications/TextEdit.app /System/Library/LaunchDaemons/com.apple.ManagedClient.enroll.plist
+sudo mount -uw /Volumes/Macintosh\ HD
 ```
-
-change
-
 ```
-<key>com.apple.ManagedClient.enroll</key>
-        <true/>
+sudo bash 
+ mv /System/Library/LaunchAgents/com.apple.ManagedClientAgent.agent.plist /System/Library/LaunchAgents/com.apple.ManagedClientAgent.agent-disabled 
+ mv /System/Library/LaunchAgents/com.apple.ManagedClientAgent.enrollagent.plist /System/Library/LaunchAgents/com.apple.ManagedClientAgent.enrollagent-disabled 
+ mv /System/Library/LaunchDaemons/com.apple.ManagedClient.cloudconfigurationd.plist /System/Library/LaunchDaemons/com.apple.ManagedClient.cloudconfigurationd-disabled 
+ mv /System/Library/LaunchDaemons/com.apple.ManagedClient.enroll.plist /System/Library/LaunchDaemons/com.apple.ManagedClient.enroll-disabled 
+ mv /System/Library/LaunchDaemons/com.apple.ManagedClient.plist /System/Library/LaunchDaemons/com.apple.ManagedClient-disabled 
+ mv /System/Library/LaunchDaemons/com.apple.ManagedClient.startup.plist System/Library/LaunchDaemons/com.apple.ManagedClient.startup-disabled  
 ```
 
-to
-
+### Enable SIP again
 ```
-<key>com.apple.ManagedClient.enroll</key>
-        <false/>
-````
+csrutil enable
+```
 
-### Restart Computer again
-
-So that the changes take effect
+### Restart Normally and Enjoy
