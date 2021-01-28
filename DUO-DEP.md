@@ -1,3 +1,7 @@
+full original version:
+
+https://duo.com/labs/research/mdm-me-maybe
+
 # 03. DEP APIs
 We begin our journey of understanding DEP by looking at the APIs used to interface with the DEP service. There are three distinct DEP APIs.
 
